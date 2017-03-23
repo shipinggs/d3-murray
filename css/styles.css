@@ -5,3 +5,9 @@ div.bar {
     height: 75px;   /* We'll override this later */
     background-color: teal;
 }
+
+svg .pumpkin {
+    fill: #607D8B;
+    stroke: #B0BEC5;
+    stroke-width: 3;
+}
