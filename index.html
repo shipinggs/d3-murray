@@ -10,43 +10,49 @@
 </head>
 
 <body>
-    <svg width="500" height="200">
-        <circle cx="25" cy="25" r="20"
-                fill="rgba(128, 0, 128, 0.75)"
-                stroke="rgba(0, 255, 0, 0.25)" stroke-width="10"/>
-        <circle cx="65" cy="25" r="20"
-                fill="rgba(128, 0, 128, 0.75)"
-                stroke="rgba(0, 255, 0, 0.25)" stroke-width="10"
-                opacity="0.5"/>
-        <circle cx="105" cy="25" r="20"
-                fill="rgba(128, 0, 128, 0.75)"
-                stroke="rgba(0, 255, 0, 0.25)" stroke-width="10"
-                opacity="0.2"/>
-        <!-- rgba alpha and opacity value are multiplied -->
-        <circle cx="145" cy="25" r="20"
-                fill="rgba(128, 0, 128, 0.15)"
-                stroke="rgba(0, 255, 0, 0.05)" stroke-width="10" />
-    </svg>
-
-
     <script type="text/javascript">
-        // Your beautiful D3 code will go here
-        var dataset = [25, 7, 5, 26, 11, 8, 25, 14, 23, 19,
-            14, 11, 22, 29, 11, 13, 12, 17, 18, 10,
-            24, 18, 25, 9, 3
-        ];
-        var rand_dataset = [];
-        for (var i = 0; i < 25; i++) {
-            rand_dataset.push(Math.round(Math.random()*30));
-        }
-        d3.select("body").selectAll("div")
-            .data(rand_dataset)
-            .enter()
-            .append("div")
-            .classed("bar", true)
-            .style("height", function(d) {
-                return d * 5 + "px"
+        //Width and height
+        var w = 500;
+        var h = 100;
+        var svg = d3.select("body").append("svg")
+            .attr("width", w)
+            .attr("height", h);
+
+        var dataset = [5, 10, 15, 20, 25];
+        var circles = svg.selectAll("circle")
+                        .data(dataset)
+                        .enter()
+                        .append("circle");
+
+        circles.attr("cx", function(d, i) {
+              return (i*50) + 25;
+            })
+            .attr("cy", h/2)
+            .attr("r", function(d) {
+                return d;
+            })
+            .attr("opacity", function(d) {
+              return 1-(d*3/100);
             });
+
+            
+        // // Your beautiful D3 code will go here
+        // var dataset = [25, 7, 5, 26, 11, 8, 25, 14, 23, 19,
+        //     14, 11, 22, 29, 11, 13, 12, 17, 18, 10,
+        //     24, 18, 25, 9, 3
+        // ];
+        // var rand_dataset = [];
+        // for (var i = 0; i < 25; i++) {
+        //     rand_dataset.push(Math.round(Math.random()*30));
+        // }
+        // d3.select("body").selectAll("div")
+        //     .data(rand_dataset)
+        //     .enter()
+        //     .append("div")
+        //     .classed("bar", true)
+        //     .style("height", function(d) {
+        //         return d * 5 + "px"
+        //     });
     </script>
 </body>
 
